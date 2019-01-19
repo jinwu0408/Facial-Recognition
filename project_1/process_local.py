@@ -14,11 +14,13 @@ All the above steps should be in one function called process_image()
 """
 
 # TODO: Import OpenCV
-
+import cv2
 
 # TODO: Edit this function
 def process_image():
-    return
+	cv2.imread_grayscale('geisel.jpg')
+	cv2.resize(geisel.jpg, geisel_2.jpg, Size(), 0.5, 0.5, interpolation)	
+	return
 
 # Just prints 'Hello World! to screen.
 def hello_world():
