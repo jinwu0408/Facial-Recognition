@@ -59,9 +59,11 @@ x = MaxPooling2D(pool_size=(2,2))(x)
 
 x = Conv2D(120, kernel_size = (5,5), activation = 'sigmoid')(x)
 
+x = Dense(84, activation = 'tanh')(x)
+
+
 # A layer instance is callable on a tensor, and returns a tensor
-x = Dense(64, activation='relu')(x)
-x = Dense(64, activation='relu')(x)
+
 predictions = Dense(10, activation='softmax')(x)
 
 # This creates a model that includes the Input layer and three Dense layers
