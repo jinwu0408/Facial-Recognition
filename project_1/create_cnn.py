@@ -50,10 +50,14 @@ inputs = Input(shape=(32,32,1))
 
 #Implementing convolutional and maxpool layers
 x = Conv2D(6, kernel_size=(5,5), activation = 'sigmoid')(inputs)
+
 x = MaxPooling2D(pool_size = (2,2))(x)
+
 x = Conv2D(16,kernel_size=(5,5),activation = 'sigmoid')(x)
+	
 x = MaxPooling2D(pool_size=(2,2))(x)
-x = Conv2D(120, kernel_size = (5,5), activation = 'sigmoid')(inputs)
+
+x = Conv2D(120, kernel_size = (5,5), activation = 'sigmoid')(x)
 
 # A layer instance is callable on a tensor, and returns a tensor
 x = Dense(64, activation='relu')(x)
