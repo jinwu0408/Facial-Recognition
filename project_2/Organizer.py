@@ -1,10 +1,10 @@
 import shutil
 import os
 
-source = "/home/ubuntu/Team2A-AJJW/images/00"
-dest1 = '/home/ubuntu/Team2A-AJJW/Project_2/Training'
-dest2 = '/home/ubuntu/Team2A-AJJW/Project_2/Validation'
-dest3 = '/home/ubuntu/Team2A-AJJW/Project_2/Testing'
+source = "../images/00"
+dest1 = '../Project_2/Training'
+dest2 = '../Project_2/Validation'
+dest3 = '../Project_2/Testing'
 
 files = os.listdir(source)
 

@@ -30,7 +30,8 @@ camera.framerate = 32
 rawCapture = PiRGBArray(camera, size=(120, 160))
 x=(120-100)/2
 y=(160-100)/2
-
+w=100
+h=100
 # allow the camera to warmup
 time.sleep(0.1)
 
