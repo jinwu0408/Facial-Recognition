@@ -9,7 +9,7 @@ dest3 = '/home/ubuntu/Team2A-AJJW/Project_2/Testing'
 files = os.listdir(source)
 
 for f in files:
-    if (f.startswith("yaleB11_P00A") or f.startswith("yaleB11_P01A")):
+    if (f.startswith("yaleB11")):
         shutil.move(f, dest1)
    # elif (f.startswith("Intel") or f.startswith("intel")):
   #      shutil.move(f, dest2)
