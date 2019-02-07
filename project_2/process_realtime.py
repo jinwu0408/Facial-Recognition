@@ -29,6 +29,7 @@ camera = PiCamera()
 camera.resolution = (320, 240)
 camera.framerate = 32
 rawCapture = PiRGBArray(camera, size=(320, 240))
+pose = 0
 """
 x=(120-100)/2
 y=(160-100)/2
@@ -50,13 +51,24 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     image=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     faces=face_cascade.detectMultiScale(image, 1.3,5)
+    #for(x,y,w,h) in faces:
     for(x,y,w,h) in faces:
-        #cv2.rectangle(image, (x,y),(x+w,y+h),(255,255,255),2)
+        maxWH = max([w,h])
+        #image2 = cv2.rectangle(image, (x,y),(x+maxWH,y+maxWH),(255,255,255),2)
         found_face=True
+
+        # Crop to rectangle (x,y) -> (x+maxWH, y+maxWH)
+        croppedIm = image[y:y+maxWH, x:x+maxWH]
+        resizeIm = cv2.resize(croppedIm, (244,244))
+        cv2.imshow("Cropped", croppedIm)
+        cv2.imshow("resized",resizeIm)
+        if (counter >9) :
+            counter = 0
+            pose = input("Please enter the Pose number")
+        cv2.imwrite("./Images_Akhil/Pose%sFrame%s.PNG" % (pose,counter), resizeIm)
         counter=counter+1
     # show the frame
     cv2.imshow("Frame", image)
-    cv2.imwrite("./Images/Frame%s.PNG" % counter, image)
     # time.sleep(5)
     key = cv2.waitKey(1) & 0xFF
 
@@ -67,8 +79,8 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     if key == ord("q"):
         break
     found_face=False
-    if(counter ==100):
-        break
+    
+            #break
 
 #References:
 #1. Provided Code for this Assignment
