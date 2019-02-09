@@ -34,24 +34,25 @@ def load_model():
     # TODO: use 'imagenet' for weights, include_top=False, (IMG_H, IMG_W, NUM_CHANNELS) for input_shap
 
 	
-	keras.applications.vgg16.VGG16(include_top=False, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=19)
+	base_model = keras.applications.vgg16.VGG16(include_top=False, weights='imagenet', input_shape=(IMG_H,IMG_W, NUM_CHANNELS), pooling=None, classes=19)
 	print('Model weights loaded.')
 	base_out = base_model.output
     # TODO: add a flatten layer, a dense layer with 256 units, a dropout layer with 0.5 rate,
     # TODO: and another dense layer for output. The final layer should have the same number of units as classes
-    	model = Model(inputs=base_model.input, outputs=predictions)	
-	model.add(Flatten())
-	model.add(Dense(256,activation = 'relu'))
-	model.add(Dropout(0.5))
-	model.add(Dense(19, activation = 'softmax'))
-	print 'Build model'
+    	#model = Model(inputs=base_model.input, outputs=predictions)	
 
+	x = Flatten()(base_out)
+	x = Dense(256, activation = 'relu')(x)
+	x = Dropout(rate = 0.5)(x)
+	predictions = Dense(19, activation = 'softmax')(x)
+	print 'Build model'
+	model = Model(inputs = base_model.input, outputs = predictions)
 	model.summary()
 
     # TODO: compile the model, use SGD(lr=1e-4,momentum=0.9) for optimizer, 'categorical_crossentropy' for loss,
     # TODO: and ['accuracy'] for metrics
 	sgd = optimizers.SGD(lr = 1e-4, momentum=0.9)
-	model.compile(loss = 'categorical crossentropy', optimizer = sgd, metrics = 'accuracy')
+	model.compile(loss = 'categorical_crossentropy', optimizer = sgd, metrics = ['accuracy'])
 	print 'Compile model'
 	return model
 
@@ -92,9 +93,9 @@ def main():
     print 'Load val data:'
     X_val, Y_val = load_data(VAL_DIR)
     # TODO: Train model
-    model.fit()
+    model.fit(X_train,Y_train, batch_size = BATCH_SIZE, epochs = NUM_EPOCHS)
     # TODO: Save model weight
-    model.save()
+    model.save_weights("model.h5")
     print 'model weights saved.'
     return
 
