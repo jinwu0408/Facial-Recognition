@@ -16,11 +16,11 @@ from keras.models import Model, load_model
 from keras.utils.np_utils import to_categorical
 
 TEST_DIR = '../data/test'  # TODO
-MODEL_PATH = '/home/ec2-user/vgg16_new_version_weights.h5'  # TODO
+MODEL_PATH = '/project_3/model.h5'  # TODO
 IMG_H, IMG_W, NUM_CHANNELS = 224, 224, 3
 MEAN_PIXEL = np.array([104., 117., 123.]).reshape((1, 1, 3))
 BATCH_SIZE = 16
-NUM_CLASSES = 20  # TODO
+NUM_CLASSES = 19  # TODO
 
 
 def load_data(src_path):
@@ -52,7 +52,7 @@ def main():
     print 'Load test data:'
     X_test, Y_test = load_data(TEST_DIR)
     # TODO: get accuracy
-
+    model.evaluate()
     return
 
 
