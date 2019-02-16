@@ -18,9 +18,11 @@ import cv2
 
 # TODO: Edit this function
 def process_image():
-	cv2.imread_grayscale('geisel.jpg')
-	cv2.resize(geisel.jpg, geisel_2.jpg, Size(), 0.5, 0.5, interpolation)	
-	return
+    cv2.imread_grayscale('geisel.jpg')
+    cv2.resize(geisel.jpg, geisel_2.jpg, Size(), 0.5, 0.5, interpolation)	
+    cv2.rectangle(geisel_2.jpg, cv2.GetSize()/2-(50,50), cv2.GetSize()+(50,50)), (256,256,256))
+    cv2.imwrite(Geisel__.png,geisel_2.jpg)
+    return
 
 # Just prints 'Hello World! to screen.
 def hello_world():
