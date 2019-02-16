@@ -15,8 +15,8 @@ import cv2
 from keras.models import Model, load_model
 from keras.utils.np_utils import to_categorical
 
-TEST_DIR = '../data/test'  # TODO
-MODEL_PATH = '/project_3/model.h5'  # TODO
+TEST_DIR = '../data/testing'  # TODO
+MODEL_PATH = './modelTemp.h5'  # TODO
 IMG_H, IMG_W, NUM_CHANNELS = 224, 224, 3
 MEAN_PIXEL = np.array([104., 117., 123.]).reshape((1, 1, 3))
 BATCH_SIZE = 16
@@ -30,7 +30,7 @@ def load_data(src_path):
     for class_path in class_path_list:
         image_path_list += sorted(glob.glob(os.path.join(class_path, '*jpg')))
     num_images = len(image_path_list)
-    print '-- This set has {} images.'.format(num_images)
+    print('-- This set has {} images.'.format(num_images))
     X = np.zeros((num_images, IMG_H, IMG_W, NUM_CHANNELS))
     Y = np.zeros((num_images, 1))
     # read images and labels
@@ -47,12 +47,13 @@ def load_data(src_path):
 
 def main():
     # TODO: load model
-
+    model = load_model(MODEL_PATH)
     # compute test accuracy
-    print 'Load test data:'
+    print ('Load test data:')
     X_test, Y_test = load_data(TEST_DIR)
     # TODO: get accuracy
-    model.evaluate()
+    accuracy = model.evaluate(x=X_test, y=Y_test, verbose=1, batch_size =BATCH_SIZE)
+    print("accuracy: {}".format(accuracy))
     return
 
 
