@@ -19,10 +19,14 @@ import cv2
 def process_image():
 	grayscale_image=cv2.imread('geisel.jpg', flags=0)#Step 1 and Step 2
 	cv2.imwrite('Geisel__1_2.jpg', grayscale_image)
-	a=grayscale_image.size()
-	print(a)
-	cv2.resize(src=grayscale_image, dst='Geisel__3.jpg', dsize=a,fx=0.5, fy=0.5)#Step 3	
-	cv2.rectangle('Geisel__3.jpg', cv2.GetSize()/2-(50,50), cv2.GetSize()+(50,50), (256,256,256))
+	image_3=cv2.resize(src=grayscale_image, dsize=(0,0), fx=0.5, fy=0.5)#Step 3	
+	#print(image_3)
+#	cv2.imshow('Window', image_3)
+	cv2.imwrite('Geisel__3.jpg', image_3)
+	#image_3=cv2.imread('Geisel__3.jpg')	
+	cv2.rectangle(image_3, cv2.GetSize(image_3)/2-(50,50), cv2.GetSize(image_3)+(50,50), (256,256,256))
+	
+	image_3=cv2.imread('Geisel__3.jpg')	
 	cv2.imwrite('geisel-bw-rectangle.png','Geisel__3.jpg')
 	return
 
@@ -40,3 +44,7 @@ def main():
 
 if(__name__ == '__main__'):
     main()
+
+#References
+# 1. Certain Subpages of the Following Website: https://docs.opencv.org/
+# 2. Piazza Posts for UCSD's ECE 196 in Winter 2019
