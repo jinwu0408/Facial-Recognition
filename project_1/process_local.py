@@ -1,58 +1,36 @@
-"""
-ECE196 Face Recognition Project
-
-Prerequisite: You need to install OpenCV before running this code
-The code here is an example of what you can write to print out 'Hello World!'
-Now modify this code to process a local image and do the following:
-1. Read geisel.jpg
-2. Convert color to gray scale
-3. Resize to half of its original dimensions
-4. Draw a box at the center the image with size 100x100
-5. Save image with the name, "geisel-bw-rectangle.jpg" to the local directory
-All the above steps should be in one function called process_image()
-"""
-
-# TODO: Import OpenCV
 import cv2
-# TODO: Edit this function
+
 def process_image():
-	grayscale_image=cv2.imread('geisel.jpg', flags=0)#Step 1 and Step 2
+	grayscale_image=cv2.imread('geisel.jpg', flags=0)#Task 1 and Task 2
 	cv2.imwrite('Geisel__1_2.jpg', grayscale_image)
-	image_3=cv2.resize(src=grayscale_image, dsize=(0,0), fx=0.5, fy=0.5)#Step 3	
-	#print(image_3)
-#	cv2.imshow('Window', image_3)
+	image_3=cv2.resize(src=grayscale_image, dsize=(0,0), fx=0.5, fy=0.5)#Task 3	
 	cv2.imwrite('Geisel__3.jpg', image_3)
-	#image_3=cv2.imread('Geisel__3.jpg')	
-#	image_4=cv2.rectangle(image_3, image_3.shape(:2)/2-(50,50), image_3.shape(:2)+(50,50), (256,256,256))#Step 4
-	image_4=cv2.rectangle(image_3, (image_3.shape[1]/2-50,image_3.shape[0]/2+50),(image_3.shape[1]/2+50,image_3.shape[0]/2-50),  (256,256,256),3)#Step 4
-	print(image_3.shape[0])
-	print(image_3.shape[1]) 
-	print(image_3.shape[:2])
-	print(image_3.shape[0]/2-50)
-	
-	print(image_3.shape[0]/2+50)
-	print(image_3.shape[1]/2-50)
-	print(image_3.shape[1]/2+50)
-	#image_3=cv2.imread('Geisel__3.jpg')	
-	cv2.imwrite('geisel-bw-rectangle.png',image_4)#Step 5
+	image_4=cv2.rectangle(image_3, (image_3.shape[1]/2-50,image_3.shape[0]/2+50),(image_3.shape[1]/2+50,image_3.shape[0]/2-50),  (256,256,256),3)#Task 4
+	cv2.imwrite('geisel-bw-rectangle.jpg',image_4)#Task 5
 	return
 
-# Just prints 'Hello World! to screen.
+
 def hello_world():
-    print('Hello World!')
+    print('Hello World!')#"Hello World!", without the quotation marks, gets printed to the standard output, which can be a computer screen.
     return
 
-# TODO: Call process_image function.
 def main():
 	hello_world()
-	process_image()
+	process_image()#The "process_image" function gets called.
 	return
 
 
 if(__name__ == '__main__'):
     main()
 
-#References
-# 1. Certain Subpages of the Following Website: https://docs.opencv.org/
-# 2. Piazza Posts for UCSD's ECE 196 in Winter 2019
-# 3. Will Chen's original "process_local.py" file for the Face Recognition Project 1 for ECE 196 in Winter 2019
+
+
+"""
+References:
+1. Certain Subpages of the Following Website: https://docs.opencv.org/
+2. Relavant Resources Given to Students who had to Complete Project 1 of the Face Recognition Projects for the University of California, San Diego's ECE 196 course in Winter 2019
+	Reference 2 includes the following resources:
+	i. At Least One Piazza Post for the University of California, San Diego's ECE 196 in Winter 2019
+	ii. Project 1 of the Face Recongnition Projects for the University of California, San Diego's ECE 196 course in Winter 2019
+ 
+"""
