@@ -15,12 +15,13 @@ All the above steps should be in one function called process_image()
 
 # TODO: Import OpenCV
 import cv2
-
 # TODO: Edit this function
 def process_image():
 	grayscale_image=cv2.imread('geisel.jpg', flags=0)#Step 1 and Step 2
 	cv2.imwrite('Geisel__1_2.jpg', grayscale_image)
-	cv2.resize('Geisel__1_2.jpg', 'Geisel__3.jpg', Size(), 0.5, 0.5, interpolation)	
+	a=grayscale_image.size()
+	print(a)
+	cv2.resize(src=grayscale_image, dst='Geisel__3.jpg', dsize=a,fx=0.5, fy=0.5)#Step 3	
 	cv2.rectangle('Geisel__3.jpg', cv2.GetSize()/2-(50,50), cv2.GetSize()+(50,50), (256,256,256))
 	cv2.imwrite('geisel-bw-rectangle.png','Geisel__3.jpg')
 	return
