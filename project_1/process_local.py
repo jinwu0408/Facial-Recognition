@@ -2,9 +2,7 @@ import cv2
 
 def process_image():
 	grayscale_image=cv2.imread('geisel.jpg', flags=0)#Task 1 and Task 2
-	cv2.imwrite('Geisel__1_2.jpg', grayscale_image)
 	image_3=cv2.resize(src=grayscale_image, dsize=(0,0), fx=0.5, fy=0.5)#Task 3	
-	cv2.imwrite('Geisel__3.jpg', image_3)
 	image_4=cv2.rectangle(image_3, (image_3.shape[1]/2-50,image_3.shape[0]/2+50),(image_3.shape[1]/2+50,image_3.shape[0]/2-50),  (256,256,256),3)#Task 4
 	cv2.imwrite('geisel-bw-rectangle.jpg',image_4)#Task 5
 	return
