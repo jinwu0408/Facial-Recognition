@@ -18,7 +18,7 @@ import cv2
 
 # TODO: Edit this function
 def process_image():
-	grayscale_image=cv2.imread('geisel.jpg', CV_LOAD_IMAGE_GRAYSCALE=0)#Step 1 and Step 2
+	grayscale_image=cv2.imread('geisel.jpg', flags=0)#Step 1 and Step 2
 	cv2.imwrite('Geisel__1_2.jpg', grayscale_image)
 	cv2.resize('Geisel__1_2.jpg', 'Geisel__3.jpg', Size(), 0.5, 0.5, interpolation)	
 	cv2.rectangle('Geisel__3.jpg', cv2.GetSize()/2-(50,50), cv2.GetSize()+(50,50), (256,256,256))
@@ -32,8 +32,9 @@ def hello_world():
 
 # TODO: Call process_image function.
 def main():
-    hello_world()
-    return
+	hello_world()
+	process_image()
+	return
 
 
 if(__name__ == '__main__'):
