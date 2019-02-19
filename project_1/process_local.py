@@ -24,7 +24,7 @@ def process_image():
 	cv2.imwrite('Geisel__3.jpg', image_3)
 	#image_3=cv2.imread('Geisel__3.jpg')	
 #	image_4=cv2.rectangle(image_3, image_3.shape(:2)/2-(50,50), image_3.shape(:2)+(50,50), (256,256,256))#Step 4
-	image_4=cv2.rectangle(image_3, (image_3.shape[0]/2-50,image_3.shape[1]/2+50), (image_3.shape[0]/2+50,image_3.shape[1]/2-50), (256,256,256))#Step 4
+	image_4=cv2.rectangle(image_3, (image_3.shape[0]/2-50,image_3.shape[1]/2+50), (image_3.shape[0]/2+50,image_3.shape[1]/2-50), (256,256,256),3)#Step 4
  
 	#image_3=cv2.imread('Geisel__3.jpg')	
 	cv2.imwrite('geisel-bw-rectangle.png',image_4)#Step 5
