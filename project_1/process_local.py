@@ -1,6 +1,5 @@
 """
 ECE196 Face Recognition Project
-Author: Will Chen
 
 Prerequisite: You need to install OpenCV before running this code
 The code here is an example of what you can write to print out 'Hello World!'
@@ -25,7 +24,7 @@ def process_image():
 	cv2.imwrite('Geisel__3.jpg', image_3)
 	#image_3=cv2.imread('Geisel__3.jpg')	
 #	image_4=cv2.rectangle(image_3, image_3.shape(:2)/2-(50,50), image_3.shape(:2)+(50,50), (256,256,256))#Step 4
-	image_4=cv2.rectangle(image_3, (image_3.shape[0]/2-50,image_3.shape[1]/2-50), (image_3.shape[0]/2+50,image_3.shape[1]/2+50), (256,256,256))#Step 4
+	image_4=cv2.rectangle(image_3, (image_3.shape[0]/2-50,image_3.shape[1]/2+50), (image_3.shape[0]/2+50,image_3.shape[1]/2-50), (256,256,256))#Step 4
  
 	#image_3=cv2.imread('Geisel__3.jpg')	
 	cv2.imwrite('geisel-bw-rectangle.png',image_4)#Step 5
@@ -49,3 +48,4 @@ if(__name__ == '__main__'):
 #References
 # 1. Certain Subpages of the Following Website: https://docs.opencv.org/
 # 2. Piazza Posts for UCSD's ECE 196 in Winter 2019
+# 3. Will Chen's original "process_local.py" file for the Face Recognition Project 1 for ECE 196 in Winter 2019
