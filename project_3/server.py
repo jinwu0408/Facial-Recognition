@@ -42,8 +42,8 @@ def classify(path_to_image):
     mean_pixel = np.array([104., 117., 123.]).reshape((1, 1, 3))
 
     # TODO: Use opencv to read and resize image to standard dimensions
-    img =  # ______
-    resized_img =  # ______
+    img =cv2.imread(path_to_image)
+    resized_img = cv2.resize(name_of_image,dst,Size(img_height, img_width)) # ______
 
     # TODO: Subtract mean_pixel from the image store the new image in
     # a variable called 'normalized_image'

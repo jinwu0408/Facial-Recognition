@@ -15,12 +15,13 @@ import base64
 import requests
 from picamera import PiCamera
 from picamera.array import PiRGBArray
+import process_realtime as pr
 
 # Font that will be written on the image
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 # TODO: Declare path to face cascade
-CASCADE_PATH = ""
+CASCADE_PATH = "../Images"
 
 
 def request_from_server(img):
@@ -31,13 +32,14 @@ def request_from_server(img):
     :returns: Returns a dictionary containing label and cofidence.
     """
     # URL or PUBLIC DNS to your server
-    URL = ""
+    URL = "ec2-18-237-175-129.us-west-2.compute.amazonaws.com"
 
     # File name so that it can be temporarily stored.
     temp_image_name = 'temp.jpg'
 
     # TODO: Save image with name stored in 'temp_image_name'
-
+    cv2.imwrite(temp_image_name,img)
+    
     # Reopen image and encode in base64
     # Open binary file in read mode
     image = open(temp_image_name, 'rb')
@@ -57,9 +59,10 @@ def request_from_server(img):
 
 
 def main():
-    # 1. Start running the camera.
+    
+    # 1. Start running the camera.    
     # TODO: Initialize face detector
-
+    
     # Initialize camera and update parameters
     camera = PiCamera()
     width = 640
