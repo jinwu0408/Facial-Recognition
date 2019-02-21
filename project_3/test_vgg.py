@@ -37,6 +37,7 @@ def load_data(src_path):
     for i in range(num_images):
         image_path = image_path_list[i]
         label = int(image_path.split('/')[-2])
+	print(label)
         image = cv2.imread(image_path, 1)
         image = cv2.resize(image, (IMG_H, IMG_W)) - MEAN_PIXEL
         X[i, :, :, :] = image
