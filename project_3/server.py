@@ -64,12 +64,18 @@ def classify(path_to_image):
     # give to the folder when you organized data
     # Hint: np.argmax
     label =  np.argmax(predictions)# ________
+    if label == 17:
+    	label = "Akhil"
 
+    elif label == 18:
+    	label = "Jin"
+    else:
+    	label= str(label)	
     # TODO: Calculate confidence according to the following metric:
     # Confidence = prediction_value / sum(all_prediction_values)
     # Be sure to call your confidence value 'conf'
     # Hint: np.sum()
-    label_value =  label# _______
+    label_value =  np.max(predictions)# _______
     total =  np.sum(predictions)# _________
     conf =  label_value/total# __________
 
