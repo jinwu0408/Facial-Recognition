@@ -20,8 +20,12 @@ import process_realtime as pr
 # Font that will be written on the image
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
-## TODO: Declare path to face cascade
+# TODO: Declare path to face cascade
+<<<<<<< HEAD
 CASCADE_PATH = '/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml'
+=======
+CASCADE_PATH = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
+>>>>>>> 5f0de23c26eda3479d465e9009924aca4afa784d
 
 
 def request_from_server(img):
@@ -113,7 +117,7 @@ def main():
                 # [OPTIONAL]: At this point you only have a number to display,
                 # you could add some extra code to convert your number to a
                 # name
-		result_to_display = predictions['label']		
+		result_to_display = predictions		
 
                 cv2.putText(frame, str(result_to_display), (10, 30), FONT, 1, (0, 255, 0), 2)
                 cv2.imshow('Face Image for Classification', frame)
