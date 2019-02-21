@@ -31,7 +31,7 @@ def request_from_server(img):
     :returns: Returns a dictionary containing label and cofidence.
     """
     # URL or PUBLIC DNS to your server
-    URL = "http://ec2-54-201-152-213.us-west-2.compute.amazonaws.com"
+    URL = "http://ec2-54-201-152-213.us-west-2.compute.amazonaws.com:8080/predict"
 
     # File name so that it can be temporarily stored.
     temp_image_name = 'temp.jpg'
@@ -91,9 +91,12 @@ def main():
         # Be sure to save the faces in a variable called 'faces'
 	faces = face_cascade.detectMultiScale(img,1.3,5)
         for (x, y, w, h) in faces:
+            maxWH = max([w,h])
+            croppedIm = img[y:y+maxWH, x:x+maxWH]
+            resizeIm = cv2.resize(croppedIm, (244,244))
             print('==================================')
             print('Face detected!')
-            cv2.imshow('Face Image for Classification', frame)
+            cv2.imshow('Face Image for Classification', resizeIm)
 
             # Keep showing image until a key is pressed
             cv2.waitKey()
@@ -104,7 +107,7 @@ def main():
                 print('Let\'s see who you are...')
 
                 # TODO: Get label and confidence using request_from_server
-		predictions = request_from_server(frame)
+                predictions = request_from_server(resizeIm)
                 print('New result found!')
 
                 # TODO: Display label on face image
