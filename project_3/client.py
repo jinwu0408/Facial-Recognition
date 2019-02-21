@@ -21,7 +21,7 @@ import process_realtime as pr
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 # TODO: Declare path to face cascade
-CASCADE_PATH = "../Images"
+CASCADE_PATH = "/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
 
 
 def request_from_server(img):
@@ -88,7 +88,7 @@ def main():
 
         # TODO: Use face detector to get faces.
         # Be sure to save the faces in a variable called 'faces'
-
+	faces = face_cascade.detectMultiScale(img,1.3,5)
         for (x, y, w, h) in faces:
             print('==================================')
             print('Face detected!')
@@ -103,7 +103,7 @@ def main():
                 print('Let\'s see who you are...')
 
                 # TODO: Get label and confidence using request_from_server
-
+		predictions = request_from_server(frame)
                 print('New result found!')
 
                 # TODO: Display label on face image
@@ -111,6 +111,7 @@ def main():
                 # [OPTIONAL]: At this point you only have a number to display,
                 # you could add some extra code to convert your number to a
                 # name
+		result_to_display = predictions		
 
                 cv2.putText(frame, str(result_to_display), (10, 30), FONT, 1, (0, 255, 0), 2)
                 cv2.imshow('Face Image for Classification', frame)
