@@ -21,11 +21,12 @@ from keras.models import load_model
 from flask import Flask, request, jsonify, abort, send_from_directory
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 CORS(app)                               # Allow CORS (Cross Origin Requests)
 
 # TODO: Load the model from the weights file.
-MODEL = model.h5 
+MODEL = load_model('./modelTemp.h5')
 
 
 def classify(path_to_image):
@@ -43,11 +44,11 @@ def classify(path_to_image):
 
     # TODO: Use opencv to read and resize image to standard dimensions
     img =cv2.imread(path_to_image)
-    resized_img = cv2.resize(name_of_image,dst,Size(img_height, img_width)) # ______
+    resized_img = cv2.resize(img, (img_height, img_width)) # ______
 
     # TODO: Subtract mean_pixel from the image store the new image in
     # a variable called 'normalized_image'
-    normalized_image =  # ________
+    normalized_image =  resized_img - mean_pixel #________
 
     # Turns image shape of (2,) to (1,2)
     image_to_be_classified = np.expand_dims(normalized_image, axis=0)
@@ -55,22 +56,28 @@ def classify(path_to_image):
     # TODO: Use network to predict the 'image_to_be_classified' and
     # get an array of prediction values
     # Note: MODEL.predict() returns an array of arrays ie. [[classes]]
-    predictions =  # ______
+    predictions =  MODEL.predict(image_to_be_classified, verbose=0,)# ______
 
     # TODO: Get the predicted label which is defined as follows:
     # Label = the index of the largest value in the prediction array
     # This label is a number, which corresponds to the same number you
     # give to the folder when you organized data
     # Hint: np.argmax
-    label =  # ________
+    label =  np.argmax(predictions)# ________
+    if label == 17:
+    	label = "Akhil"
 
+    elif label == 18:
+    	label = "Jin"
+    else:
+    	label= str(label)	
     # TODO: Calculate confidence according to the following metric:
     # Confidence = prediction_value / sum(all_prediction_values)
     # Be sure to call your confidence value 'conf'
     # Hint: np.sum()
-    label_value =  # _______
-    total =  # _________
-    conf =  # __________
+    label_value =  np.max(predictions)# _______
+    total =  np.sum(predictions)# _________
+    conf =  label_value/total# __________
 
     prediction = {'label': str(label),
                   'confidence': float(conf)}
