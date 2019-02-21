@@ -15,7 +15,6 @@ import base64
 import requests
 from picamera import PiCamera
 from picamera.array import PiRGBArray
-import process_realtime as pr
 
 # Font that will be written on the image
 FONT = cv2.FONT_HERSHEY_SIMPLEX
@@ -121,10 +120,12 @@ def main():
                 break
 
         # Delete image in variable so we can get the next frame
+        cv2.imshow('test', frame)
+        key = cv2.waitKey(1) & 0xFF
         rawCapture.truncate(0)
 
         print('Waiting for image...')
-        time.sleep(1)
+        time.sleep(0.2)
 
 
 # Runs main if this file is run directly
