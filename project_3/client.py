@@ -111,7 +111,7 @@ def main():
                 # [OPTIONAL]: At this point you only have a number to display,
                 # you could add some extra code to convert your number to a
                 # name
-		result_to_display = predictions		
+		result_to_display = predictions['label']		
 
                 cv2.putText(frame, str(result_to_display), (10, 30), FONT, 1, (0, 255, 0), 2)
                 cv2.imshow('Face Image for Classification', frame)
